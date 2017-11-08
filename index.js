@@ -5,6 +5,8 @@ const Path = require("path")
 const babel = require("babel-core")
 const Vuex = require("vuex")
 
+exports.outputFile = false
+
 exports.regiterFolder = function(folder, Vue) {
 
     return new Promise((resolve) => {
@@ -29,11 +31,17 @@ exports.regiterFolder = function(folder, Vue) {
                     if (prefix) prefix += "."
                     let tagName = prefix + stat.name.replace(/.vue$/i, '')
 
+                    result = "(function(){module={exports:{}}; exports=module.exports;\n\n" + result + "\nreturn module.exports\n})()"
+                    result = result.replace(/export default/, "module.exports =")
+
                     result = babel.transform(result, {
                         presets: ["es2015"]
                     }).code
 
-                    result = "(function(){module={exports:{}}; exports=module.exports;\n\n" + result + "\nreturn module.exports\n})()"
+                    if (exports.outputFile) {
+                        fs.writeFile(root + "/" + stat.name + ".js", result, () => {})
+                    }
+
                     let component = eval(result)
 
                     component.template = "<div>" + component.template + "</div>"
@@ -41,8 +49,6 @@ exports.regiterFolder = function(folder, Vue) {
                     if (component.mapState) {
                         component.computed = Vuex.mapState(component.mapState)
                     }
-
-                    console.log(result)
 
                     Vue.component(tagName, component)
 
@@ -61,7 +67,7 @@ exports.regiterFolder = function(folder, Vue) {
 
 var consoleerror = console.error
 console.error = function(msg) {
-    if (msg.match("Component names can only contain alphanumeric characters and the hyphen, and must start with a letter")) {
+    if (msg && msg.match && msg.match("Component names can only contain alphanumeric characters and the hyphen, and must start with a letter")) {
         return
     }
     return consoleerror.apply(console, arguments)

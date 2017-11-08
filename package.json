@@ -1,18 +1,20 @@
 {
-    "devDependencies": {},
-    "name": "stupid-vue",
-    "version": "0.0.1",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "",
-    "license": "ISC",
-    "description": "",
-    "dependencies": {
-        "walk": "^2.3.9",
-        "babel-core": "^6.26.0",
-        "babel-preset-es2015": "^6.24.1",
-        "vuex": "^3.0.1"
-    }
+  "devDependencies": {},
+  "name": "stupid-vue",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "insert-css": "^2.0.0",
+    "vue-component-compiler": "https://github.com/aleechou/vue-component-compiler.git#legacy",
+    "vuex": "^3.0.1",
+    "walk": "^2.3.9"
+  }
 }
