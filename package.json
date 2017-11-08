@@ -1,9 +1,5 @@
 {
-    "devDependencies": {
-        "babel-core": "^6.26.0",
-        "babel-preset-es2015": "^6.24.1",
-        "vuex": "^3.0.1"
-    },
+    "devDependencies": {},
     "name": "stupid-vue",
     "version": "0.0.1",
     "main": "index.js",
@@ -12,5 +8,11 @@
     },
     "author": "",
     "license": "ISC",
-    "description": ""
+    "description": "",
+    "dependencies": {
+        "walk": "^2.3.9",
+        "babel-core": "^6.26.0",
+        "babel-preset-es2015": "^6.24.1",
+        "vuex": "^3.0.1"
+    }
 }
